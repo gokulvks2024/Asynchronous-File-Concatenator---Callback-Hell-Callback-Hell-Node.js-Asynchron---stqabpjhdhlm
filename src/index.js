@@ -1,20 +1,25 @@
 async function cat(filePaths, outputFilePath) {
   const fs = require('fs').promises;
   await fs.writeFile(outputFilePath, '');
- for(let i of filePaths){
+  let ans=[]
+  for(let i of filePaths){
     try{
       if(i.includes('.txt')){
         const data = await fs.readFile(i, 'utf8')
-        await fs.appendFile(outputFilePath, `${data}\n`)
+        ans.push(data)
+        // await fs.appendFile(outputFilePath, `${data}\n`)
       }
       else{
-        await fs.appendFile(outputFilePath,'Is a directory\n')
+        ans.push('Is a directory')
+        // await fs.appendFile(outputFilePath,'Is a directory\n')
       }
   }
     catch(err){
-      await fs.appendFile(outputFilePath,`File not found\n`)
+      ans.push('File not found')
+      // await fs.appendFile(outputFilePath,`File not found\n`)
     }
   }
+  await fs.writeFile(outputFilePath,ans.join('\n'))
 }
 
 module.exports = { cat };
