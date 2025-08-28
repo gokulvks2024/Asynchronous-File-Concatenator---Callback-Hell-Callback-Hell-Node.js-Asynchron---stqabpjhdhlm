@@ -1,5 +1,6 @@
 async function cat(filePaths, outputFilePath) {
   const fs = require('fs').promises;
+  await fs.writeFile(outputFilePath, '');
  for(let i of filePaths){
     try{
       if(i.includes('.txt')){
