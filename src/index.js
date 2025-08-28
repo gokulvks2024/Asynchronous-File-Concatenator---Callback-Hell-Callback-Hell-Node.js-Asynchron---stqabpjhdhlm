@@ -13,7 +13,6 @@ async function cat(filePaths, outputFilePath) {
   }
     catch(err){
       await fs.appendFile(outputFilePath,`File not found\n`)
-      console.error(err);
     }
   }
 }
